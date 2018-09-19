@@ -23,5 +23,16 @@ export default styles = StyleSheet.create({
       margin: 10,
       alignItems: 'center', 
       justifyContent: 'center'
-    }
+    },
+    qcard: {
+      backgroundColor: 'orange',
+      color: 'black',
+      textAlign: 'center',
+      borderRadius: 15,
+      width: 350,
+      height: 200,
+      padding: 20,
+      justifyContent: 'center',
+      alignItems: 'center'
+  }
   });

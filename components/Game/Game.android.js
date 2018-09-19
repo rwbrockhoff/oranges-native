@@ -1,15 +1,12 @@
 import React from 'react';
 
-import {Text, View, Button, Image } from 'react-native';
-import { FormInput } from 'react-native-elements'
+import {Text, View} from 'react-native';
 import styles from './Styles'
 
-import { Link, Redirect } from 'react-router-native'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
-import swal from 'sweetalert2'
-import { addRoom } from '../../ducks/reducer'
+
 
 const socket = io.connect('https://server.aktlist.com')
 
@@ -17,18 +14,45 @@ class Game extends React.Component {
   constructor(){
     super()
     this.state = {
-        addStuff: 'here'
+      judge: false
     }
-    
+  }
+
+  componentDidMount(){
+    let judge = this.props.users.filter(player => {
+      return player.judge === true
+    })
+    console.log(judge, 'judge')
+    if(judge[0].user === this.props.user.user){
+      this.setState({
+        judge: true
+      })
+    }
   }
 
   render(props) {
     
     return (
       <View style={styles.home}>
-          <Text>Game Component </Text>
-      </View>
-    );
+
+        <View>
+            <Qcard/>
+        </View>
+
+    <View>
+{this.state.judge === true ? 
+<Text h1>You're the judge this round!</Text>  : 
+<Text></Text>
+}
+    </View>
+
+        <View>
+           <Acards/>
+        </View> 
+
+    </View>
+
+    )
   }
 }
 

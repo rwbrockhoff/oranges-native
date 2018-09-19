@@ -10,7 +10,9 @@ import axios from 'axios'
 import io from 'socket.io-client'
 import swal from 'sweetalert2'
 
-import { addRoom } from '../../ducks/reducer'
+import {addPlayer, setJudge, updateQCard, readyPlayer} from '../../ducks/reducer'
+
+
 
 const socket = io.connect('https://server.aktlist.com')
 
@@ -166,6 +168,6 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {addRoom})(Loading);
 
 
+export default connect(mapStateToProps,{addPlayer, setJudge, updateQCard,readyPlayer})(Loading);
