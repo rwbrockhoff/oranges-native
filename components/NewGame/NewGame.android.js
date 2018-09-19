@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Button, Image } from 'react-native';
 import styles from './Styles'
-import { Redirect, Link } from 'react-router-native'
+import { Redirect, Link, withRouter} from 'react-router-native'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
@@ -100,17 +100,19 @@ class NewGame extends React.Component {
         console.log(input)
       }
 
-      async readyClick(){
+      readyClick = (props) => {
+
+        // On click, Emulator shows no users in readyPlayers. So it does not have anything to slice. 
       
-        let copyReady = this.props.readyPlayers.slice(0);
-        copyReady.push(this.props.user)
-        await this.props.readyPlayer(copyReady)
-        socket.emit('ready-player', {players: this.props.readyPlayers, room:this.props.room})
-        setTimeout(() => {
-          this.setState({toLoading: true})
-        }, 1000)
-      }
-  
+            // let copyReady = this.props.readyPlayers.slice(0);
+            // copyReady.push(this.props.user)
+            // await this.props.readyPlayer(copyReady)
+            // socket.emit('ready-player', {players: this.props.readyPlayers, room:this.props.room})
+            // setTimeout(() => {
+              this.setState({toLoading: true})
+            // }, 1000)
+          }
+     
       cancelGame = () => {
         this.setState({cancelGame: true})
   
@@ -120,7 +122,7 @@ class NewGame extends React.Component {
       }
 
   render(props) {
-
+    
     var userInputReady = () => {
       // If they haven't submitted a userName, render Input box.
       if (!this.state.userNameSubmit){
@@ -181,8 +183,13 @@ class NewGame extends React.Component {
                     {userButtonReady()}
                 </View>
 
-    {/* {this.state.toLoading ? <Redirect to='/loading' /> : ''} */}
-        {this.state.cancelGame ? <Redirect to='/' /> : ''}
+
+        {this.state.toLoading ? <Redirect to='/Loading' /> 
+        : <Text></Text>}
+
+        {this.state.cancelGame ? <Redirect to='/' /> 
+        : <Text></Text>}
+  
         
       </View>
      

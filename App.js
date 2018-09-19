@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NativeRouter, Route, Link, Switch } from 'react-router-native'
+import { NativeRouter, Route, Link, Switch, history } from 'react-router-native'
 import {Provider} from 'react-redux'
 import store from './ducks/store'
 
@@ -17,7 +17,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-      <NativeRouter>
+      <NativeRouter history={history}>
         <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/Create-Room" component={CreateRoom}/>
