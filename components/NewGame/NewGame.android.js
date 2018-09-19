@@ -97,20 +97,20 @@ class NewGame extends React.Component {
         this.setState({
           text:input
         })
-        console.log(input)
+        
       }
 
-      readyClick = (props) => {
+      async readyClick(props){
 
         // On click, Emulator shows no users in readyPlayers. So it does not have anything to slice. 
       
-            // let copyReady = this.props.readyPlayers.slice(0);
-            // copyReady.push(this.props.user)
-            // await this.props.readyPlayer(copyReady)
-            // socket.emit('ready-player', {players: this.props.readyPlayers, room:this.props.room})
-            // setTimeout(() => {
+            var copyReady = this.props.readyPlayers.slice(0);
+            copyReady.push(this.props.user)
+            await this.props.readyPlayer(copyReady)
+            socket.emit('ready-player', {players: this.props.readyPlayers, room:this.props.room})
+            setTimeout(() => {
               this.setState({toLoading: true})
-            // }, 1000)
+            }, 1000)
           }
      
       cancelGame = () => {
@@ -153,7 +153,7 @@ class NewGame extends React.Component {
     var userButtonReady = () => {
       if (this.state.userNameSubmit && this.props.users.length > 1){
         return ( 
-        <Button onPress={this.readyClick} title="Ready?"></Button>
+        <Button onPress={() => this.readyClick()} title="Ready?"></Button>
         )
       }
       
