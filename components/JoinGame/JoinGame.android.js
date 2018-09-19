@@ -59,9 +59,8 @@ class JoinGame extends React.Component {
   } 
     return (
       <View style={styles.home}>
-          <Text> Join Room </Text>
           <View style={styles.box}>
-          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="Room Name" value={this.state.text} containerStyle={{width: 200}}/>
+          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="Room Name" value={this.state.text} containerStyle={{width: 200, marginBottom: 20}}/>
           <Button onPress={this.joinGame}title="Join Game"></Button>
           </View>
           

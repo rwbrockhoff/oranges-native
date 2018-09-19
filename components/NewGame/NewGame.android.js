@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View, Button, Image } from 'react-native';
+import {View, Button, Image } from 'react-native';
 import styles from './Styles'
 import { Link } from 'react-router-native'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
-import { FormInput } from 'react-native-elements'
+import { FormInput, Text } from 'react-native-elements'
 import {addPlayer, storeUser, readyPlayer} from '../../ducks/reducer'
 
 
@@ -100,15 +100,87 @@ class NewGame extends React.Component {
         console.log(input)
       }
 
+      async readyClick(){
+      
+        let copyReady = this.props.readyPlayers.slice(0);
+        copyReady.push(this.props.user)
+        await this.props.readyPlayer(copyReady)
+        socket.emit('ready-player', {players: this.props.readyPlayers, room:this.props.room})
+        setTimeout(() => {
+          this.setState({toLoading: true})
+        }, 1000)
+      }
+  
+      cancelGame = () => {
+        this.setState({cancelGame: true})
+  
+        // If user submitted userName, but cancelled game--we need to
+        // remove them from readyPlayers on cancel.
+  
+      }
+
   render(props) {
+
+    var userInputReady = () => {
+      // If they haven't submitted a userName, render Input box.
+      if (!this.state.userNameSubmit){
+        return (
+      <View>
+          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="User Name" value={this.state.text} containerStyle={{width: 200, marginBottom: 20}}/>
+          <Button onPress={this.createUser}title="Join"></Button>
+      </View>
+        )}
+  
+      // If they submitted userName, render a ready message.
+      else if (this.state.userNameSubmit && this.props.users.length > 2) {
+        return (
+          <View>
+              <Text h4> Ready up when everyone is here! </Text>
+          </View>
+        )
+      }
+      else if(this.state.userNameSubmit){
+        return(
+      <View>
+          <Text h4> Waiting for more players. </Text>
+      </View>
+        )
+      }
+    }
+  
+    var userButtonReady = () => {
+      if (this.state.userNameSubmit && this.props.users.length > 1){
+        return ( 
+        <Button onPress={this.readyClick} title="Ready?"></Button>
+        )
+      }
+      
+    }
+
     
     return (
       <View style={styles.home}>
-          <Text> New Game </Text>
-          <Text>Room ID:{this.props.room}</Text>
-          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="User Name" value={this.state.text} containerStyle={{width: 200}}/>
-          <Button onPress={this.createUser}title="Create User"></Button>
+          <Text h3>Room ID: {this.props.room}</Text>
+      
+      {/* Eventually we will have to change View to ScrollView or FlatList because View doesn't have a scroll property. */}
+      
+      <View style={styles.userBox}>
+        {this.props.users.map((element, index) =>{
+          console.log('elementuser',element)
+          return(
+           <View style={styles.userBubble} key={index}>
+                <Image style={styles.icon} source={{uri: element.userPic}}/>
+               <Text h4> {element.user} </Text>
+           </View>
+          )
+        })}
+      </View> 
+                <View style={styles.bottomInput}>
+                    {userInputReady()}
+                    {userButtonReady()}
+                </View>
       </View>
+     
     );
   }
 }

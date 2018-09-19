@@ -6,11 +6,13 @@ export default styles = StyleSheet.create({
       backgroundColor: 'skyblue',
       width: '100%',
       alignItems: 'center',
-      justifyContent: 'center',
+      paddingTop: 40
     },
-    logo: {
-      width: 350,
-      height: 200
+    icon: {
+      width: 30,
+      height: 30,
+      borderRadius: 15,
+      marginLeft: 15
     },
     title: {
       fontSize: 40
@@ -21,6 +23,35 @@ export default styles = StyleSheet.create({
       backgroundColor: 'white',
       borderRadius: 15,
       margin: 10,
+      alignItems: 'center', 
+      justifyContent: 'center'
+    },
+    userBox: {
+      height: 300,
+      width: 350,
+      marginTop: 50,
+      marginBottom: 20
+    },
+    userBubble: {
+      height: 60,
+      width: 350,
+      backgroundColor: 'white',
+      borderRadius: 15,
+      marginTop: 3,
+      marginBottom: 3,
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'row'
+    },
+    bottomInput: {
+      height: 150,
+      width: 350,
+      position: 'absolute',
+      bottom: 0,
+      backgroundColor: 'white',
+      borderRadius: 15,
+      margin: 10,
+      marginBottom: 80,
       alignItems: 'center', 
       justifyContent: 'center'
     }

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, View, Button, Image } from 'react-native';
-import { FormInput } from 'react-native-elements'
+import {View, Button, Image } from 'react-native';
+import { FormInput, Text } from 'react-native-elements'
 import styles from './Styles'
 import { Link, Redirect } from 'react-router-native'
 import {connect} from 'react-redux'
@@ -58,9 +58,8 @@ class CreateRoom extends React.Component {
     
     return (
       <View style={styles.home}>
-          <Text> Create Room </Text>
           <View style={styles.box}>
-          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="Room Name" value={this.state.text} containerStyle={{width: 200}}/>
+          <FormInput onChangeText={(input)=>{this.handleRoomInput(input)}} placeholder="Room Name" value={this.state.text} containerStyle={{width: 250, marginBottom: 20}}/>
           <Button onPress={this.createGame}title="Create Game"></Button>
           </View>
           
