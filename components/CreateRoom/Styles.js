@@ -20,6 +20,7 @@ export default styles = StyleSheet.create({
       width: 350,
       backgroundColor: 'white',
       borderRadius: 15,
+      padding: 10,
       margin: 10,
       alignItems: 'center', 
       justifyContent: 'center'

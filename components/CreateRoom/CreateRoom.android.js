@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, Button, Image } from 'react-native';
+import { FormInput } from 'react-native-elements'
 import styles from './Styles'
 import { Link } from 'react-router-native'
 import {connect} from 'react-redux'
@@ -19,11 +20,20 @@ class CreateRoom extends React.Component {
     
   }
 
+  createGame = () => {
+    console.log('creating a game!')
+  }
+
   render(props) {
     
     return (
       <View style={styles.home}>
           <Text> Create Room </Text>
+          <View style={styles.box}>
+          <FormInput containerStyle={{width: 200}}/>
+          <Button onPress={this.createGame}title="Create Game"></Button>
+          </View>
+          
       </View>
     );
   }
