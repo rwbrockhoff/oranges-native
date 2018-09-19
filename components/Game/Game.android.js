@@ -7,6 +7,9 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
 
+import Qcard from '../Qcard/Qcard.android'
+import Acards from '../Acard/Acard.android'
+
 
 const socket = io.connect('https://server.aktlist.com')
 
@@ -62,6 +65,6 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {addRoom})(Game);
+export default connect(mapStateToProps)(Game);
 
 

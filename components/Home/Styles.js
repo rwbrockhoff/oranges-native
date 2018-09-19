@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
       fontSize: 40
     }, 
     box: {
-      height: 200, 
+      height: 100, 
       width: 350,
       backgroundColor: 'white',
       borderRadius: 15,

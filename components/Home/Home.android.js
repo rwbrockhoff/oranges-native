@@ -36,11 +36,11 @@ class Home extends React.Component {
           <Image style={styles.logo} source={require("../../assets/logo.png")}/>
 
       <View style={styles.box}>
-      <RouterButton to="/Create-Room" title="Create Room" color="#841584"/>
+      <RouterButton to="/Create-Room" title="Create Room" color="#279af1"/>
       </View>
 
        <View style={styles.box}>
-       <RouterButton to="/Join-Game" title="Join Game" color="#841584"/>
+       <RouterButton to="/Join-Game" title="Join Game" color="#279af1"/>
       </View>
 
       </View>
