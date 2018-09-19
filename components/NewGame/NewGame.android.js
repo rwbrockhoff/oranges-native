@@ -168,7 +168,7 @@ class NewGame extends React.Component {
 
       <View style={styles.userBox}>
         {this.props.users.map((element, index) =>{
-          console.log('elementuser',element)
+  
           return(
            <View style={styles.userBubble} key={index}>
                 <Image style={styles.icon} source={{uri: element.userPic}}/>

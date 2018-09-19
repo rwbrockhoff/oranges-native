@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
 import {addRoom} from '../../ducks/reducer'
-
+import swal from 'sweetalert2'
 
 const socket = io.connect('https://server.aktlist.com')
 
