@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Button, Image } from 'react-native';
 import styles from './Styles'
-import { Link } from 'react-router-native'
+import { Redirect, Link } from 'react-router-native'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
@@ -163,7 +163,7 @@ class NewGame extends React.Component {
           <Text h3>Room ID: {this.props.room}</Text>
       
       {/* Eventually we will have to change View to ScrollView or FlatList because View doesn't have a scroll property. */}
-      
+
       <View style={styles.userBox}>
         {this.props.users.map((element, index) =>{
           console.log('elementuser',element)
@@ -175,10 +175,15 @@ class NewGame extends React.Component {
           )
         })}
       </View> 
+
                 <View style={styles.bottomInput}>
                     {userInputReady()}
                     {userButtonReady()}
                 </View>
+
+    {/* {this.state.toLoading ? <Redirect to='/loading' /> : ''} */}
+        {this.state.cancelGame ? <Redirect to='/' /> : ''}
+        
       </View>
      
     );
