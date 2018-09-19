@@ -28,7 +28,9 @@ class CreateRoom extends React.Component {
         axios.post('https://server.aktlist.com/api/addroom', {room: this.state.text})
         .then(res =>{
           socket.emit('join-room', {room: this.state.text})
+          
           this.props.addRoom({room: this.state.text})
+          console.log(this.props)
           this.setState({
             toGameRoom: true
           })
