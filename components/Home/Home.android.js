@@ -1,40 +1,48 @@
 import React from 'react';
-import {Text, View, Button } from 'react-native';
+import {Text, View, Button, Image } from 'react-native';
 import styles from './Styles'
 import { Link } from 'react-router-native'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import io from 'socket.io-client'
+import RouterButton from 'react-router-native-button';
 
-import io from 'socket.io-client/dist/socket.io.js'
 
-
-
+const socket = io.connect('https://server.aktlist.com')
 
 class Home extends React.Component {
   constructor(){
     super()
-    
-    this.socket = io('https://server.aktlist.com')
-    
+    this.state = {
+      sound: true,
+      playbackFailed: false
+    }
+
     
   }
 
-  testServer = () => {
-    
-    axios.get('https://server.aktlist.com/dylan').then((response) => {
-      console.log(response.data, 'res')
-    })
+  componentDidMount(){
+    socket.emit('leaveAll')
+    if(this.props.users[0]){
+      //Dont like this but used to clear the sockets properly//
+      window.location.reload()
+    }
   }
-  render() {
-    this.socket.emit('fire')
+
+  render(props) {
+    
     return (
-      <View style={styles.container}>
+      <View style={styles.home}>
+          <Image style={styles.logo} source={require("../../assets/logo.png")}/>
 
-        <Text style={styles.title}>Join Game</Text>
-        <Text style={styles.title}>New Game</Text>
-        <Button onPress={this.testServer} title="hello"/>
-        
-        <Link to="/flower"><Text>Go Here </Text></Link>
+      <View style={styles.box}>
+      <RouterButton to="/Create-Room" title="Create Room" color="#841584"/>
+      </View>
+
+       <View style={styles.box}>
+       <RouterButton to="/Join-Game" title="Join Game" color="#841584"/>
+      </View>
+
       </View>
     );
   }

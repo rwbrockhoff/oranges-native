@@ -4,7 +4,8 @@ import { NativeRouter, Route, Link, Switch } from 'react-router-native'
 import {Provider} from 'react-redux'
 import store from './ducks/store'
 import Home from './components/Home/Home.android';
-import Flower from './components/Flower/Flower.android';
+import CreateRoom from './components/CreateRoom/CreateRoom.android'
+import JoinGame from './components/JoinGame/JoinGame.android'
 
 export default class App extends React.Component {
   render() {
@@ -13,7 +14,8 @@ export default class App extends React.Component {
       <NativeRouter>
         <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/flower" component={Flower}/>
+            <Route path="/Create-Room" component={CreateRoom}/>
+            <Route path='/Join-Game' component={JoinGame}/>
         </Switch>
       </NativeRouter>
       </Provider>
