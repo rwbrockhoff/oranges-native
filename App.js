@@ -6,6 +6,7 @@ import store from './ducks/store'
 import Home from './components/Home/Home.android';
 import CreateRoom from './components/CreateRoom/CreateRoom.android'
 import JoinGame from './components/JoinGame/JoinGame.android'
+import NewGame from './components/NewGame/NewGame.android'
 
 export default class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home}/>
             <Route path="/Create-Room" component={CreateRoom}/>
             <Route path='/Join-Game' component={JoinGame}/>
+            <Route path='/New-Game' component={NewGame}/>
         </Switch>
       </NativeRouter>
       </Provider>
